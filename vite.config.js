@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  // GitHub project pages example: base: "/chain-stories/"
+  // GitHub project pages: base: "/chain-stories/"
+  // Custom domain or username.github.io root: base: "/"
   base: "/",
 });
