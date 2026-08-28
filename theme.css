@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --paper: #FFFFFF;
+  --paper-2: #F4F4F5;
+  --paper-card: #FFFFFF;
+  --ink: #0F0F10;
+  --ink-soft: #71717A;
+  --seal: #1D9BF0;
+  --gold: #1D9BF0;
+  --border: rgba(15, 15, 16, 0.10);
+  --border-strong: rgba(15, 15, 16, 0.16);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.chn-root {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--paper);
+  box-sizing: border-box;
+}
+
+.chn-shell {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .chn-shell {
+    padding: 36px 32px 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chn-shell {
+    max-width: 1040px;
+    padding: 40px 40px 72px;
+  }
+}
+
+.chn-fold {
+  position: relative;
+  background: var(--paper-card);
+  border-radius: 16px;
+  box-shadow: none;
+  border: 1px solid var(--border);
+}
+
+.chn-fold::after {
+  display: none !important;
+  content: none !important;
+}
+
+.chn-display {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.chn-type {
+  font-family: Inter, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.chn-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chn-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chn-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(15, 15, 16, 0.12);
+  border-radius: 999px;
+}
+
+.chn-rise {
+  animation: chn-rise 0.28s ease-out both;
+}
+
+@keyframes chn-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.chn-fade {
+  animation: chn-fade 0.3s ease both;
+}
+
+@keyframes chn-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.cinema-mode {
+  --paper: #000000;
+  --paper-card: #111113;
+  --ink: #F4F4F5;
+  --ink-soft: #A1A1AA;
+  background: #000000 !important;
+  color: #F4F4F5 !important;
+}
+
+.cinema-mode .chn-fold {
+  background: #111113;
+  border-color: rgba(244, 244, 245, 0.12);
+}
+
+.cinema-mode .chn-fold::after {
+  display: none !important;
+}
