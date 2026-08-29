@@ -79,10 +79,8 @@ body {
 /* ---------- Utility / shared classes used by the app ---------- */
 .chn-root {
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--s-6);
+  /* Do not force center on every screen — only pad the shell */
+  padding: 0;
   background: var(--paper);
 }
 
@@ -170,7 +168,14 @@ body {
 }
 
 /* ---------- Onboarding: “Sign the corner” ---------- */
-/* Make the card properly centered and balanced */
+/* Center only when the root only contains the profile card */
+.chn-root:has(> .chn-fold:only-child) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--s-6);
+}
+
 .chn-root > .chn-fold {
   width: 100%;
   max-width: 380px;
@@ -178,13 +183,11 @@ body {
   text-align: left;
 }
 
-/* Title */
 .chn-root .chn-display {
   font-size: 1.75rem;
   margin: var(--s-3) 0 var(--s-2);
 }
 
-/* Description text */
 .chn-root .text-sm {
   color: var(--ink-soft);
   font-size: 0.9375rem;
@@ -192,7 +195,6 @@ body {
   margin-bottom: var(--s-5);
 }
 
-/* Input field */
 .chn-root input[type="text"],
 .chn-root input:not([type]) {
   width: 100%;
@@ -217,14 +219,12 @@ body {
   color: var(--ink-muted);
 }
 
-/* Hint text under input */
 .chn-root .text-xs {
   color: var(--ink-muted);
   font-size: 0.8125rem;
   margin-bottom: var(--s-5);
 }
 
-/* Primary action button – full width & balanced */
 .chn-root .chn-btn {
   width: 100%;
   padding: 0.8rem 1rem;
@@ -238,7 +238,6 @@ body {
   background: #7a1f2d;
 }
 
-/* Quill / seal icon at top */
 .chn-root svg,
 .chn-root [class*="quill"],
 .chn-root .seal {
@@ -247,7 +246,6 @@ body {
 }
 
 /* ---------- Main app shell improvements ---------- */
-/* Timeline / empty state cards */
 .chn-fold.chn-rise {
   transition: box-shadow 0.2s ease;
 }
@@ -256,13 +254,11 @@ body {
   box-shadow: var(--shadow-paper-hover);
 }
 
-/* Navigation tabs / buttons */
 button,
 [role="button"] {
   font-family: inherit;
 }
 
-/* Better focus visibility */
 :focus-visible {
   outline: 2px solid var(--seal);
   outline-offset: 2px;
@@ -270,7 +266,7 @@ button,
 
 /* ---------- Responsive polish ---------- */
 @media (max-width: 480px) {
-  .chn-root {
+  .chn-root:has(> .chn-fold:only-child) {
     padding: var(--s-4);
     align-items: flex-start;
     padding-top: 12vh;
@@ -286,7 +282,6 @@ button,
   }
 }
 
-/* Large screens – keep content from feeling lost */
 @media (min-width: 1024px) {
   .chn-root > .chn-fold {
     max-width: 400px;
