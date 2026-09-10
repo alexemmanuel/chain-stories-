@@ -38,12 +38,6 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 html {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
@@ -149,7 +143,7 @@ body {
   border-radius: 999px;
 }
 
-/* Onboarding only */
+/* Onboarding only (Sign in / Create account) */
 .chn-root:has(> .chn-fold:only-child) {
   display: flex;
   align-items: center;
@@ -180,8 +174,12 @@ body {
   margin-bottom: var(--s-5);
 }
 
+/* ─── FIXED: cover email + password so the form no longer collapses ─── */
 .chn-root input[type="text"],
+.chn-root input[type="email"],
+.chn-root input[type="password"],
 .chn-root input:not([type]) {
+  display: block;
   width: 100%;
   padding: 0.7rem 0.9rem;
   margin-bottom: var(--s-2);
@@ -189,9 +187,10 @@ body {
   border: 1px solid var(--border);
   border-radius: 999px;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1rem; /* prevents iOS zoom */
   color: var(--ink);
   outline: none;
+  box-sizing: border-box;
 }
 
 .chn-root input:focus {
@@ -201,6 +200,15 @@ body {
 
 .chn-root input::placeholder {
   color: var(--ink-soft);
+}
+
+/* Labels above fields */
+.chn-root label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin-bottom: 4px;
 }
 
 .chn-root .text-xs {
@@ -218,6 +226,7 @@ body {
   color: var(--btn-ink);
 }
 
+/* Only force full-width buttons on the auth card */
 .chn-root:has(> .chn-fold:only-child) .chn-btn {
   width: 100%;
 }
@@ -226,17 +235,7 @@ body {
   opacity: 0.95;
 }
 
-button,
-[role="button"] {
-  font-family: inherit;
-}
-
-:focus-visible {
-  outline: 2px solid var(--seal);
-  outline-offset: 2px;
-}
-
-/* Lobby: compact horizontal pills (wrap OK, like reference screenshots) */
+/* Lobby: compact horizontal pills (wrap OK) */
 .chn-actions-row {
   display: flex !important;
   flex-direction: row !important;
@@ -261,6 +260,7 @@ button,
   border: 1px solid var(--border);
 }
 
+/* Mobile tweaks for the auth card */
 @media (max-width: 480px) {
   .chn-root:has(> .chn-fold:only-child) {
     padding: var(--s-4);
